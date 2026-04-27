@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.jayr.mvvm.ui.screens.home.HomeScreen
+import com.jayr.mvvm.ui.screens.student_dashboard.StudentScreen
 import com.jayr.mvvm.ui.theme.MvvmTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MvvmTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    HomeScreen(
+                    StudentScreen(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
