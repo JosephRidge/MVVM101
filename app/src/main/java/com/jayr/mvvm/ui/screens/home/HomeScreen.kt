@@ -19,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.jayr.mvvm.data.models.HobbyDataModel
 
 @Composable
 fun HomeScreen(
@@ -27,7 +26,6 @@ fun HomeScreen(
     modifier: Modifier
 ) {
     val hobby = homeScreenViewModel.hobby.collectAsState()
-
     var hobbyName by remember { mutableStateOf(TextFieldValue("")) }
     var hobbyDescription by remember { mutableStateOf(TextFieldValue("")) }
 
@@ -54,21 +52,24 @@ fun HomeScreen(
 
         OutlinedButton(
             onClick = {
-               hobby = createHobby(name = hobbyName.text, description = hobbyDescription.text)
+                homeScreenViewModel.createHobby(
+                    name = hobbyName.text,
+                    description = hobbyDescription.text
+                )
             }
         ) {
             Text(text = "Create Hobby")
         }
         HorizontalDivider()
         Text(
-            text = hobby.name
+            text = hobby.value.name
         )
         Text(
-            text = hobby.description
+            text = hobby.value.description
         )
     }
 }
 
-fun createHobby(name:String, description:String): HobbyDataModel{
-    return HobbyDataModel(name= name, description = description)
-}
+//fun createHobby(name:String, description:String): HobbyDataModel{
+//    return HobbyDataModel(name= name, description = description)
+//}
