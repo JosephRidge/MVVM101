@@ -57,6 +57,8 @@ fun HomeScreen(
             Text(text = "Create Hobby")
         }
     }
+}
 
-
+fun createHobby(name:String, description:String): HobbyDataModel{
+    return HobbyDataModel(name= name, description = description)
 }
