@@ -4,10 +4,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,7 +26,8 @@ fun HomeScreen(
     homeScreenViewModel: HomeScreenViewModel = viewModel(),
     modifier: Modifier
 ) {
-    var hobby by remember { mutableStateOf(HobbyDataModel()) }
+    val hobby = homeScreenViewModel.hobby.collectAsState()
+
     var hobbyName by remember { mutableStateOf(TextFieldValue("")) }
     var hobbyDescription by remember { mutableStateOf(TextFieldValue("")) }
 
@@ -51,11 +54,18 @@ fun HomeScreen(
 
         OutlinedButton(
             onClick = {
-
+               hobby = createHobby(name = hobbyName.text, description = hobbyDescription.text)
             }
         ) {
             Text(text = "Create Hobby")
         }
+        HorizontalDivider()
+        Text(
+            text = hobby.name
+        )
+        Text(
+            text = hobby.description
+        )
     }
 }
 
